@@ -1,11 +1,4 @@
-name: Demo App Android Release
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  build:
+build:
     name: Build APK and Create release
     needs: [ version ]
     runs-on: ubuntu-latest
