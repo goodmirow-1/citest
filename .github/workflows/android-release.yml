@@ -6,10 +6,10 @@ on:
 
 
 jobs:
-	macos:
-		runs-os: macOS-latest
-		steps:
-			- name: move directory
-			  run: cd /Users/roy/Desktop/Projects/myvef_client/myvef_app/ios/fastlane
-			- name: fastlane play
-			  run: fastlane beta
+  macos:
+    runs-os: macOS-latest
+    steps:
+      - name: move directory
+        run: cd /Users/roy/Desktop/Projects/myvef_client/myvef_app/ios/fastlane
+      - name: fastlane play
+        run: fastlane beta
