@@ -1,4 +1,4 @@
-app_identifier("kr.sheeps.nolilteo") # The bundle identifier of your app
+app_identifier("kr.sheeps.citest") # The bundle identifier of your app
 apple_id("company@noteasy.kr") # Your Apple email address
 
 itc_team_id("122326965") # App Store Connect Team ID
