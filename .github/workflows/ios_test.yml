@@ -11,14 +11,6 @@ jobs:
     steps:
       - name: Checkout code from ref
         uses: actions/checkout@v2
-      - name: Select Xcode version
-          run: sudo xcode-select -switch /Applications/Xcode.app
-      - name: Bundle install
-          run: cd ./ios && bundle install
-      - name: Setup JDK
-          uses: actions/setup-java@v1
-          with:
-            java-version: "12.x"
         
       - name: Run Flutter tasks
         uses: subosito/flutter-action@v1
@@ -28,7 +20,7 @@ jobs:
       - name: Install tools
         run: |
           flutter pub get
-          cd ./ios && pod install
+          pod install
       - name: Setup SSH Keys and known_hosts for fastlane match
         run: |
           SSH_PATH="$HOME/.ssh"
