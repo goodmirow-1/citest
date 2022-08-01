@@ -39,4 +39,4 @@ jobs:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: 
         run: |
-          pod install --repo-update
+          cd ./ios && pod install --repo-update
