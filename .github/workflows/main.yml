@@ -4,6 +4,7 @@ on:
   push:
     branches: [ beta ]
 
+    
 jobs:
  deploy_ios:
     name: Deploy build to TestFlight
