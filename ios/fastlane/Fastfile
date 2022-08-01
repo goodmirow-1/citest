@@ -50,7 +50,7 @@ platform :ios do
 	)
 	slack(
 		message: "Testflight 배포 성공!🚀",
-		slack_url: "https://hooks.slack.com/services/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"
+		slack_url: "https://hooks.slack.com/services/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"
 	)
   end
 
@@ -60,7 +60,7 @@ platform :ios do
 		slack(
 			message: "에러 발생 ${exception}",
 			success: false,
-			slack_url: "https://hooks.slack.com/services/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"
+			slack_url: "https://hooks.slack.com/services/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"
 		)
 	end
   end
