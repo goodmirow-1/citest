@@ -18,33 +18,25 @@ default_platform(:ios)
 platform :ios do
   desc "Description of what the lane does"
   lane :beta do
-	if is_ci
-      create_keychain(
-        name: ENV['MATCH_KEYCHAIN_NAME'],
-        password: ENV["MATCH_KEYCHAIN_PASSWORD"],
-        default_keychain: true,
-        unlock: true,
-        timeout: 3600,
-        lock_when_sleeps: false
-      )
-    end
+	get_certificates(
+		keychain_password: ENV['FASTLANE_PASSWORD']
+	)
+	get_provisioning_profile
+
+#	api_key = app_store_connect_api_key(
+#        key_id: "48UKVL69RS",
+#        issuer_id: "31d4df6f-f4fa-47da-a718-1a3f8a52642d",
+#        key_filepath: "myAuthKey.p8",
+#    )
+
+#	match(api_key: api_key)
 
 	increment_build_number(
 		build_number: latest_testflight_build_number + 1
 	)
-
-	match(
-      type: "appstore",
-      readonly: is_ci,
-      keychain_name: ENV['MATCH_KEYCHAIN_NAME'],
-      keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
-    )
-
 	build_app(
-      workspace: "Runner.xcworkspace",
-      scheme: "MyApp",
-      export_method: "app-store"
-    )
+		configuration: 'Release'
+	)
 	upload_to_testflight(
 		skip_waiting_for_build_processing: true
 	)
@@ -52,6 +44,31 @@ platform :ios do
 		message: "Testflight 배포 성공!🚀",
 		slack_url: "https://hooks.slack.com/services/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"
 	)
+  end
+
+  lane :release do |options|
+	if options[:v]
+		get_certificates
+		get_provisioning_profile
+		increment_build_number(
+			build_number: latest_testflight_build_number + 1
+		)
+		build_app(
+			configuration: "Release"
+		)
+		upload_to_app_store(
+			app_version: options[:v],
+			submit_for_review: true,
+			force: true,
+			automatic_release: true,
+			skip_screenshots: true,
+			skip_metadata: false
+		)
+		slack(
+			message: "AppStore 배포 성공!!",
+			slack_url: "https://hooks.slack.com/services/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"
+		)
+	end
   end
 
   platform :ios do
