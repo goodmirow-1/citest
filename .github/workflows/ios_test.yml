@@ -42,11 +42,6 @@ jobs:
         env:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: test
-        run: |
-          echo ${{ secrets.GH_TOKEN }} | base64
-          
-
       - name: Deploy iOS Beta to TestFlight via Fastlane
         uses: maierj/fastlane-action@v1.4.0
         with:
@@ -63,4 +58,4 @@ jobs:
           MATCH_KEYCHAIN_NAME: ${{ secrets.MATCH_KEYCHAIN_NAME }}
           MATCH_KEYCHAIN_PASSWORD: ${{ secrets.MATCH_KEYCHAIN_PASSWORD }}
           SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER: ${{ secrets.SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER }}
-#          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.GH_TOKEN }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.GH_TOKEN }} | base64
