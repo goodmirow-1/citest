@@ -38,6 +38,7 @@ platform :ios do
       readonly: is_ci,
       keychain_name: ENV['MATCH_KEYCHAIN_NAME'],
       keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+      git_private_key: $HOME/.ssh/id_rsa
     )
 
 	build_app(
