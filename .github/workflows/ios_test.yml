@@ -20,6 +20,9 @@ jobs:
       - name: Install tools
         run: |
           flutter pub get
+      - name: sdk pod install
+        run: |
+          cd ./ios && pod install --repo-update    
       - name: Setup SSH Keys and known_hosts for fastlane match
         run: |
           SSH_PATH="$HOME/.ssh"
