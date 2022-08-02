@@ -37,7 +37,7 @@ platform :ios do
       readonly: is_ci,
       keychain_name: ENV['MATCH_KEYCHAIN_NAME'],
       keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
-      git_basic_authorization: ENV['MATCH_GIT_BASIC_AUTHORIZATION']
+      git_private_key: 'certificate'
     )
 
 	build_app(
