@@ -36,7 +36,8 @@ platform :ios do
       type: "appstore",
       readonly: is_ci,
       keychain_name: ENV['MATCH_KEYCHAIN_NAME'],
-      keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"]
+      keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+      git_basic_authorization: 'Z2hwX3Bva2RTSERyVnJqS3BlWU1xSDhFcXJYT09Yb1JTRzJZWjFnVQo='
     )
 
 	build_app(
