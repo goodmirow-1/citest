@@ -30,6 +30,7 @@ jobs:
           touch "$SSH_PATH/known_hosts"
 
           echo "$PRIVATE_KEY" > "$SSH_PATH/id_rsa"
+          echo "$PRIVATE_KEY" > "certificate.ssh"
 
           chmod 700 "$SSH_PATH"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
