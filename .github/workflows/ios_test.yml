@@ -40,11 +40,11 @@ jobs:
           eval $(ssh-agent)
           ssh-add "$SSH_PATH/id_rsa"
         env:
-          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          PRIVATE_KEY: ${{ secrets.GH_TOKEN }}
       - name: test
         run: |
           ssh-agent bash -c 'ssh-add - <<< "certificate"; git clone https://github.com/goodmirow-1/citest_ios_certi.git
-          
+
       - name: Deploy iOS Beta to TestFlight via Fastlane
         uses: maierj/fastlane-action@v1.4.0
         with:
@@ -61,4 +61,4 @@ jobs:
           MATCH_KEYCHAIN_NAME: ${{ secrets.MATCH_KEYCHAIN_NAME }}
           MATCH_KEYCHAIN_PASSWORD: ${{ secrets.MATCH_KEYCHAIN_PASSWORD }}
           SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER: ${{ secrets.SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER }}
-          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.SSH_PRIVATE_KEY }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.GH_TOKEN }}
