@@ -43,10 +43,8 @@ jobs:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: test
-        uses: timheuer/base64-to-file@v1.1
-        with:
-          fileName: 'cert64'
-          encodedString: ${{ secrets.GH_TOKEN }}
+        run: |
+          echo ${{ secrets.GH_TOKEN }} | base64
           
 
       - name: Deploy iOS Beta to TestFlight via Fastlane
