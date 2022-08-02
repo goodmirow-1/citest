@@ -41,9 +41,6 @@ jobs:
           ssh-add "$SSH_PATH/id_rsa"
         env:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      - name: test
-        run: |
-          ssh-agent bash -c 'ssh-add - <<< "certificate"; git clone https://github.com/goodmirow-1/citest_ios_certi.git
 
       - name: Deploy iOS Beta to TestFlight via Fastlane
         uses: maierj/fastlane-action@v1.4.0
