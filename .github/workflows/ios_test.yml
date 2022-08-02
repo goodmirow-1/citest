@@ -2,7 +2,7 @@ name: Demo App Release
 
 on:
   push:
-    branches: [ beta ]
+    branches: [ main ]
 
 jobs:
  deploy_ios:
