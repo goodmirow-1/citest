@@ -37,7 +37,7 @@ platform :ios do
       readonly: is_ci,
       keychain_name: ENV['MATCH_KEYCHAIN_NAME'],
       keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
-      git_basic_authorization: Base64.encode64("goodmirow-1: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")
+      git_basic_authorization: Base64.strict_encode64("goodmirow-1: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")
     )
 
 	build_app(
