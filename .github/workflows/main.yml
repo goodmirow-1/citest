@@ -14,6 +14,10 @@ jobs:
         api-level: [21, 29]
         target: [default]
     steps:
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin' # See 'Supported distributions' for available options
+        java-version: '17'
       - uses: actions/checkout@v1
       - uses: subosito/flutter-action@v1
         with:
