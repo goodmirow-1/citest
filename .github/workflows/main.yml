@@ -24,20 +24,10 @@ jobs:
       - run: flutter clean
       - run: flutter pub get
       - name: create setenv.sh
-        run: |
-          mkdir scripts
-          touch ./scripts/setenv.sh
-          echo ' ' >> ./scripts/setenv.sh
-          cat ./scripts/setenv.sh
-      - run: ls -al
       - name: Run Flutter Driver tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
           profile: ${{ matrix.device }}
           script: |
-            /Users/runner/Library/Android/sdk/tools/bin/avdmanager list
-            sudo ./scripts/setenv.sh
-            
-            flutter pub get
             flutter drive --target=test_driver/app.dart
