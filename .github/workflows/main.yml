@@ -23,6 +23,9 @@ jobs:
       - run: flutter doctor -v
       - run: flutter clean
       - run: flutter pub get
+      - run: touch ./scripts/setenv.sh
+        echo ' ' >> ./scripts/setenv.sh
+        cat ./scripts/setenv.sh
       - name: Run Flutter Driver tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
