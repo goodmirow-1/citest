@@ -36,8 +36,5 @@ jobs:
           api-level: 29
           profile: ${{ matrix.device }}
           script: |
-            /Users/runner/Library/Android/sdk/tools/bin/avdmanager list
-            sudo ./scripts/setenv.sh
-            
             flutter pub get
             flutter drive --target=test_driver/app.dart
