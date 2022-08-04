@@ -32,6 +32,10 @@ jobs:
       - name: List all simulators
         run: xcrun instruments -s
       # get UUID  simulator and boot a simulator on mac from  command line
+
+      - name: sdk pod install
+        run: |
+          cd ./ios && pod install --repo-update    
       - name: Start Simulator
         run: |
           UDID=$(
@@ -45,8 +49,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '1.12.14'
-          channel: 'dev'
+          flutter-version: '3.0.3'
       # Run flutter integrate tests
       - name: Run Flutter Driver tests
         run: flutter drive --target=test_driver/app.dart
@@ -68,9 +71,6 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '3.0.3'
-      - name: sdk pod install
-        run: |
-          cd ./ios && pod install --repo-update    
       - name: Run Flutter Driver tests
         uses: reactivecircus/android-emulator-runner@v1
         with:
