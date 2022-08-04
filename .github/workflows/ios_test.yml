@@ -7,6 +7,14 @@ on:
 jobs:
  deploy_ios:
     name: Deploy build to TestFlight
+    strategy:
+      # A set of different configurations of the virtual  
+      # environment.
+      matrix:
+        device:
+        - "iPhone 13 (15.1)"
+        - "iPhone 13 Pro Max (15.1)"
+
     runs-on: macOS-latest
     steps:
       - name: Checkout code from ref
@@ -47,3 +55,22 @@ jobs:
           ssh-add "$SSH_PATH/id_rsa"
         env:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+
+      - name: Deploy iOS Beta to TestFlight via Fastlane
+        uses: maierj/fastlane-action@v1.4.0
+        with:
+          lane: beta
+          subdirectory: ios
+        env:
+          TEAM_ID: ${{ secrets.TEAM_ID }}
+          ITC_TEAM_ID: ${{ secrets.ITC_TEAM_ID }}
+          FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_KEYCHAIN_NAME: ${{ secrets.MATCH_KEYCHAIN_NAME }}
+          MATCH_KEYCHAIN_PASSWORD: ${{ secrets.MATCH_KEYCHAIN_PASSWORD }}
+          SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER: ${{ secrets.SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER }}
+          MATCH_GIT_BASIC_AUTHORIZATION: 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
