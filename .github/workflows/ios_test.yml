@@ -12,8 +12,8 @@ jobs:
       # environment.
       matrix:
         device:
-        - "iPhone 13 (15.1)"
-        - "iPhone 13 Pro Max (15.1)"
+        - "iPhone 8 (13.1)"
+        - "iPhone 8 Pro Max (13.1)"
 
     runs-on: macOS-latest
     steps:
