@@ -17,6 +17,19 @@ jobs:
 
     runs-on: macOS-latest
     steps:
+      - name: "List all simulators"
+        run: "xcrun instruments -s"
+      - name: "Start Simulator"
+        run: |
+          UDID=$(
+            xcrun instruments -s |
+            awk \
+              -F ' *[][]' \
+              -v 'device=${{ matrix.device }}' \
+              '$1 == device { print $2 }'
+          )
+          xcrun simctl boot "${UDID:?No Simulator with this name found}"
+
       - name: Checkout code from ref
         uses: actions/checkout@v2
         
@@ -34,8 +47,7 @@ jobs:
 
 
       - name: flutter test flow play
-        run: |
-          flutter test test_driver/app_test.dart
+        run: "flutter drive --target=test_driver/app.dart"
 
       - name: Setup SSH Keys and known_hosts for fastlane match
         run: |
