@@ -12,9 +12,6 @@ jobs:
       matrix:
         device:
           - "pixel"
-          - "pixel_xl"
-          - "pixel_c"
-          - "Nexus 6"
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
@@ -23,7 +20,7 @@ jobs:
           java-version: "11.x"
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '3.0.x'
+          flutter-version: '3.0.3'
       - run: flutter clean
       - run: flutter pub get
       - name: Run Flutter Driver tests
