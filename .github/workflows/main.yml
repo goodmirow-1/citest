@@ -25,10 +25,11 @@ jobs:
       - run: flutter pub get
       - name: create setenv.sh
         run: |
-          sudo mkdir scripts
-          sudo touch ./scripts/setenv.sh
-          sudo echo ' ' >> ./scripts/setenv.sh
-          sudo cat ./scripts/setenv.sh
+          mkdir scripts
+          touch ./scripts/setenv.sh
+          echo ' ' >> ./scripts/setenv.sh
+          cat ./scripts/setenv.sh
+      - run: ls -al
       - name: Run Flutter Driver tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
