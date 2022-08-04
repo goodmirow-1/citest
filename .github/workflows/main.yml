@@ -25,6 +25,7 @@ jobs:
       - run: flutter pub get
       - name: create setenv.sh
         run: |
+          mkdir scripts
           touch ./scripts/setenv.sh
           echo ' ' >> ./scripts/setenv.sh
           cat ./scripts/setenv.sh
