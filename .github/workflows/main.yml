@@ -20,6 +20,7 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: "11.x"
+      - run: sudo update-alternatives --config java
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '3.0.3'
